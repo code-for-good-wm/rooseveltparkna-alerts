@@ -1,0 +1,102 @@
+[tool.poetry]
+
+name = "rpna"
+version = "0.0"
+description = ""
+
+authors = ["Code for Good <you@yourdomain.com>"]
+license = "Unlicensed"
+
+[tool.poetry.dependencies]
+
+python = "^3.9"
+
+# Django
+django = "^3.2.8"
+django-allauth = "*"
+django-cors-headers = "*"
+django-debug-toolbar = "^3.2.2"
+django-grappelli = "*"
+
+# API
+djangorestframework = "~3.12.4"
+drf-nested-routers = "*"
+drf-yasg = "*"
+
+# Storage
+dj-database-url = "~0.4.2"
+psycopg2-binary = "^2.9.1"
+django-redis = "^4.12.1"
+
+# Utilities
+faker = "*"
+minilog = "^2.0"
+pygraphviz = { version = "^1.7", optional = true }
+
+# Deployment
+whitenoise = "^5.3"
+gunicorn = "^20.0.4"
+
+[tool.poetry.dev-dependencies]
+
+# Formatting
+black = "=21.8b0"
+isort = "=5.9.3"
+
+# Linters
+pylint = "~2.11.1"
+mypy = "~0.910"
+django-stubs = "~1.9.0"
+types-freezegun = "*"
+types-requests = "*"
+
+# Testing
+pytest = "^6.2.5"
+pytest-django = "*"
+pytest-describe = "^2.0"
+pytest-expecter = "^2.0"
+pytest-randomly = "*"
+pytest-cov = "^2.8.0"
+freezegun = "*"
+coverage = "^5.0"
+coveragespace = "^4.0"
+
+# Server
+django-extensions = "*"
+django-livereload-server = "*"
+honcho = "^1.1"
+
+# E2E
+fire = "*"
+splinter = "~0.16.0"
+
+# Tooling
+ipython = "*"
+MacFSEvents = { version = "*", platform = "darwin" }
+pync = { version = "*", platform = "darwin" }
+sniffer = "*"
+
+[tool.poetry.extras]
+
+uml = ["pygraphviz"]
+
+[tool.isort]
+
+profile = "black"
+
+known_django = "django"
+sections = "FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.mypy]
+
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+
+cache_dir = ".cache/mypy/"
+
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+
+django_settings_module = "config.settings.local"
