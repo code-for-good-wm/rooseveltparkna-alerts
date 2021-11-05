@@ -3,7 +3,7 @@ from django.conf import settings
 
 def build_url(path: str) -> str:
     assert settings.BASE_URL
-    assert path.startswith('/')
+    assert path.startswith("/")
     return settings.BASE_URL + path
 
 

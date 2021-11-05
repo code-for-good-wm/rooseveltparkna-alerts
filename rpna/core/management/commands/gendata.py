@@ -10,7 +10,6 @@ from django.db.utils import IntegrityError
 import log
 from faker import Faker
 
-
 # from rpna.alerts import models
 
 
@@ -22,9 +21,9 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            'emails',
-            nargs='?',
-            type=lambda value: value.split(','),
+            "emails",
+            nargs="?",
+            type=lambda value: value.split(","),
             default=[],
         )
 
@@ -57,7 +56,7 @@ class Command(BaseCommand):
         return user
 
     def get_or_create_user(self, base_email, password="password"):
-        username, email_domain = base_email.split('@')
+        username, email_domain = base_email.split("@")
 
         user, created = User.objects.get_or_create(username=username)
         if email_domain == "example.com":
@@ -95,4 +94,4 @@ class Command(BaseCommand):
         return random.choice(users)  # type: ignore
 
     def fake_username(self):
-        return self.fake.name().replace(' ', '').lower()
+        return self.fake.name().replace(" ", "").lower()
