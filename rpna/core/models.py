@@ -44,7 +44,12 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    alerted_at = models.DateTimeField(default=timezone.now)
+    joined_at = models.DateTimeField(
+        default=timezone.now, help_text="Timestamp when user requested a login code."
+    )
+    alerted_at = models.DateTimeField(
+        default=timezone.now, help_text="Timestamp when user was last sent an alert."
+    )
 
     @property
     def number(self) -> str:
