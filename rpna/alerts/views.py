@@ -5,8 +5,10 @@ from django.contrib.auth import login as force_login
 from django.contrib.auth import logout as force_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from rpna.core.helpers import allow_debug, send_text_message
+from rpna.core.models import Profile
 
 from .forms import LoginCodeForm, LoginForm
 from .helpers import generate_code
@@ -29,6 +31,9 @@ def login(request):
             number = form.cleaned_data["number"]
             request.session["number"] = number
             user = User.objects.get_or_create(username=number)[0]
+            profile = Profile.objects.get_or_create(user=user)[0]
+            profile.joined_at = timezone.now()
+            profile.save()
             code = generate_code(user)
 
             if "debug" in request.POST and allow_debug(request):

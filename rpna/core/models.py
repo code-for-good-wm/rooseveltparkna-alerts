@@ -1,6 +1,8 @@
 # mypy: ignore-errors
 
 from django.contrib.auth.models import User
+from django.db import models
+from django.utils import timezone
 
 
 def normalize(name: str) -> str:
@@ -36,3 +38,19 @@ for _name in dir(CustomUser):
     if not _name.startswith("_"):
         method = getattr(CustomUser, _name)
         User.add_to_class(_name, method)
+
+
+class Profile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    joined_at = models.DateTimeField(
+        default=timezone.now, help_text="Timestamp when user requested a login code."
+    )
+    alerted_at = models.DateTimeField(
+        default=timezone.now, help_text="Timestamp when user was last sent an alert."
+    )
+
+    @property
+    def number(self) -> str:
+        return self.user.username
