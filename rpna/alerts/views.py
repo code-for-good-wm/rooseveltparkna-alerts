@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as force_login
 from django.contrib.auth import logout as force_logout
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
 from rpna.core.helpers import allow_debug, send_text_message
@@ -12,7 +12,7 @@ from rpna.core.models import Profile
 
 from .forms import LoginCodeForm, LoginForm
 from .helpers import generate_code
-from .models import User
+from .models import Event, User
 
 
 def index(_request):
@@ -83,3 +83,8 @@ def login_code(request):
 @login_required
 def setup(request):
     return render(request, "setup.html")
+
+
+def alert(request, pk: int):
+    event = get_object_or_404(Event, pk=pk)
+    return render(request, "alert.html", {"event": event})

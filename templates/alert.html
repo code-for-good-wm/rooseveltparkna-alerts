@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<h1>{{ event }}</h1>
+
+<p>{{ event.message }}</p>
+
+{% if event.link %}
+<a class="btn btn-primary" href="{{ event.link }}">Read more</a>
+{% endif %}
+
+<a class="btn btn-secondary" href="{% url 'rpna:setup' %}">Configure alerts</a>
+
+{% endblock main %}

@@ -2,6 +2,7 @@
 
 from django.contrib import admin, messages
 from django.utils import timezone
+from django.utils.html import format_html
 
 from rpna.core.helpers import send_text_message
 
@@ -31,7 +32,7 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ["sent"]
     list_display = [
         "id",
-        "url",
+        "URL",
         "message",
         "link",
         "created_by",
@@ -40,6 +41,12 @@ class EventAdmin(admin.ModelAdmin):
         "sent_at",
         "sent_count",
     ]
+
+    @staticmethod
+    @admin.display(description="URL")
+    def URL(instance):
+        url = instance.url
+        return format_html(f'<a href="{url}" target="_blank">{url}</a>')
 
     actions = [send_selected_events]
 
