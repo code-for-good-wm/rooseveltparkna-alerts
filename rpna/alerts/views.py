@@ -37,7 +37,7 @@ def login(request):
 
             send_text_message(
                 number,
-                "Welcome to Roosevelt Park's messaging system!\n\nYour confirmation code is: 123",
+                "Welcome to Roosevelt Park's messaging system!\n\nYour confirmation code is: 1234",
             )
             messages.success(request, f"Message sucesfully sent to {number}.")
             return redirect("rpna:login-code")
