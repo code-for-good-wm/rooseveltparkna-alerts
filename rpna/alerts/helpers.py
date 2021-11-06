@@ -7,3 +7,7 @@ def generate_code(user):
     user.set_password(code)
     user.save()
     return code
+
+
+def send_alerts() -> int:
+    return 0

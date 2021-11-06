@@ -26,3 +26,7 @@ def send_text_message(number: str, message: str):
         to=number, from_=settings.TWILIO_NUMBER, body=message
     )
     log.info(f"Sent text message: {message}")
+
+
+def expire_passwords() -> int:
+    return 0
