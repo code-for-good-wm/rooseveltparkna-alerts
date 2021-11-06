@@ -8,12 +8,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from rpna.core.helpers import allow_debug, send_text_message
 from rpna.core.models import Profile
+from rpna.core.utils import allow_debug
 
 from .forms import LoginCodeForm, LoginForm, SetupForm
-from .helpers import generate_code
 from .models import Event, User
+from .utils import generate_code, send_text_message
 
 
 def welcome(request):

@@ -151,7 +151,7 @@ del grappelli.default_app_config  # fixes RemovedInDjango41Warning
 
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_COLLAPSED": True,
-    "SHOW_TOOLBAR_CALLBACK": "rpna.core.helpers.allow_debug",
+    "SHOW_TOOLBAR_CALLBACK": "rpna.core.utils.allow_debug",
 }
 
 ###############################################################################

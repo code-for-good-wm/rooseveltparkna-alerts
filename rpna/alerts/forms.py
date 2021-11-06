@@ -2,7 +2,7 @@ from django import forms
 
 from rpna.core.models import Profile
 
-from .helpers import format_number
+from .utils import format_number
 
 
 class LoginForm(forms.Form):

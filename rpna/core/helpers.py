@@ -1,36 +1,17 @@
-from django.conf import settings
+from datetime import timedelta
 
-import log
-from twilio.base.exceptions import TwilioRestException
-from twilio.rest import Client
+from django.utils import timezone
 
-
-def build_url(path: str) -> str:
-    assert settings.BASE_URL
-    assert path.startswith("/")
-    return settings.BASE_URL + path
+from .models import Profile
 
 
-def allow_debug(request) -> bool:
-    if not settings.ALLOW_DEBUG:
-        return False
-    if request.GET.get("debug") == "false":
-        return False
-    if request.GET.get("debug"):
-        return True
-    return settings.DEBUG
+def expire_passwords() -> int:
+    count = 0
 
+    for profile in Profile.objects.filter(valid=None):
+        age = timezone.now() - profile.joined_at
+        if age > timedelta(minutes=5):
+            profile.invalidate()
+            count += 1
 
-def send_text_message(number: str, message: str) -> bool:
-    success = False
-    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-    try:
-        message = client.messages.create(
-            to=number, from_=settings.TWILIO_NUMBER, body=message
-        )
-    except TwilioRestException as e:
-        log.error(e)
-    else:
-        log.info(f"Sent text message (sid={message.sid})")  # type: ignore
-        success = True
-    return success
+    return count
