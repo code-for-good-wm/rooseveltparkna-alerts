@@ -6,11 +6,12 @@ from django.contrib.auth import logout as force_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from rpna.core.helpers import allow_debug, send_text_message
 from rpna.core.models import Profile
 
-from .forms import LoginCodeForm, LoginForm
+from .forms import LoginCodeForm, LoginForm, SetupForm
 from .helpers import generate_code
 from .models import Event, User
 
@@ -89,7 +90,18 @@ def setup(request):
     if request.user.is_staff:
         messages.info(request, "Staff user is now logged out.")
         return redirect("rpna:logout")
-    return render(request, "setup.html")
+
+    if request.method == "POST":
+        form = SetupForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _("Succesfully updated your preferences."))
+            return redirect("rpna:setup")
+    else:
+        form = SetupForm(instance=request.user.profile)
+
+    context = {"form": form}
+    return render(request, "setup.html", context)
 
 
 def alert(request, language: str, pk: int):

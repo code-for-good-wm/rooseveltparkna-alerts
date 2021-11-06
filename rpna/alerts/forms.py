@@ -1,5 +1,7 @@
 from django import forms
 
+from rpna.core.models import Profile
+
 from .helpers import format_number
 
 
@@ -23,3 +25,13 @@ class LoginCodeForm(forms.Form):
         label="Confirmation Code",
         widget=forms.TextInput(attrs={"autofocus": True}),
     )
+
+
+class SetupForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = [
+            "language",
+            "neighborhood_updates",
+            "volunteer_opportunities",
+        ]
