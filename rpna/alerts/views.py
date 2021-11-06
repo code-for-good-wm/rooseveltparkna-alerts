@@ -16,16 +16,10 @@ from .helpers import generate_code
 from .models import Event, User
 
 
-def index(_request):
-    return redirect("rpna:setup")
+def welcome(request):
+    if request.user.is_authenticated:
+        return redirect("rpna:setup")
 
-
-def logout(request):
-    force_logout(request)
-    return redirect("rpna:index")
-
-
-def login(request):
     if request.method == "POST" or "number" in request.GET:
         form = LoginForm(request.POST or request.GET)
         if form.is_valid():
@@ -53,10 +47,10 @@ def login(request):
         form = LoginForm()
 
     context = {"form": form, "allow_debug": allow_debug(request)}
-    return render(request, "login.html", context)
+    return render(request, "welcome.html", context)
 
 
-def login_code(request):
+def login(request):
     username = request.session.get("number")
     if not username:
         messages.error(request, "Unable to verify code. Please try again.")
@@ -82,7 +76,12 @@ def login_code(request):
         form = LoginCodeForm()
 
     context = {"form": form}
-    return render(request, "code.html", context)
+    return render(request, "login.html", context)
+
+
+def logout(request):
+    force_logout(request)
+    return redirect("rpna:welcome")
 
 
 @login_required
