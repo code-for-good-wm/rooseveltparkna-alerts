@@ -34,7 +34,7 @@ class EventAdmin(admin.ModelAdmin):
         "id",
         "URL",
         "message",
-        "link",
+        "Link",
         "created_by",
         "created_at",
         "sent",
@@ -47,6 +47,12 @@ class EventAdmin(admin.ModelAdmin):
     def URL(instance):
         url = instance.url
         return format_html(f'<a href="{url}" target="_blank">{url}</a>')
+
+    @staticmethod
+    @admin.display(description="Link")
+    def Link(instance):
+        if url := instance.link:
+            return format_html(f'<a href="{url}" target="_blank">{url}</a>')
 
     actions = [send_selected_events]
 
