@@ -20,7 +20,7 @@ ALLOWED_HOSTS = [
     ".rooseveltparkna.org",
 ]
 
-if BASE_NAME != "localhost":
+if BASE_NAME not in {"localhost", "e2e"}:
     SECURE_SSL_REDIRECT = True
 
 ###############################################################################
