@@ -142,7 +142,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 ###############################################################################
 # Grappelli
 
-GRAPPELLI_ADMIN_TITLE = "rpna Admin"
+GRAPPELLI_ADMIN_TITLE = "RPNA Alerts Admin"
 
 del grappelli.default_app_config  # fixes RemovedInDjango41Warning
 

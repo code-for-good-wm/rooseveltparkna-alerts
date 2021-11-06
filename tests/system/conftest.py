@@ -41,6 +41,6 @@ def site_loading():
     with suppress(WebDriverException):
         user.visit("/")
 
-    loaded = user.browser.is_text_present("rpna")
+    loaded = user.browser.is_text_present("Park")
 
     return not loaded
