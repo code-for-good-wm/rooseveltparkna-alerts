@@ -92,6 +92,7 @@ def setup(request):
     return render(request, "setup.html")
 
 
-def alert(request, pk: int):
+def alert(request, language: str, pk: int):
     event = get_object_or_404(Event, pk=pk)
-    return render(request, "alert.html", {"event": event})
+    context = {"event": event, "spanish": language == "es"}
+    return render(request, "alert.html", context)

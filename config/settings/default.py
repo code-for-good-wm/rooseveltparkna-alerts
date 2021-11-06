@@ -186,4 +186,4 @@ TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
 TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_NUMBER = "+16162242352"
 
-SMS_MAX_LENGTH = 160 - len("\n\nhttps://alerts.rooseveltparkna.org/-/9999")
+SMS_MAX_LENGTH = 160 - len("\n\nhttps://alerts.rooseveltparkna.org/$$/####")

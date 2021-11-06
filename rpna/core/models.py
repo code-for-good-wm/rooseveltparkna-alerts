@@ -4,6 +4,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from rpna.alerts.models import Event
 
@@ -45,10 +46,14 @@ for _name in dir(CustomUser):
         User.add_to_class(_name, method)
 
 
+class Language(models.TextChoices):
+    ENGLISH = "en", _("English")
+    SPANISH = "es", _("Spanish")
+
+
 class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
     joined_at = models.DateTimeField(
         default=timezone.now, help_text="Timestamp when user requested a login code."
     )
@@ -57,6 +62,7 @@ class Profile(models.Model):
         default=None,
         help_text="Indicates a user has entered a valid login code.",
     )
+    language = models.CharField(max_length=2, choices=Language.choices)
     alerted_at = models.DateTimeField(
         default=timezone.now, help_text="Timestamp when user was last sent an alert."
     )
@@ -76,10 +82,16 @@ class Profile(models.Model):
         self.save()
 
     def alert(self, event: Event) -> bool:
-        if send_text_message(self.number, event.content):
+        if self.language == Language.SPANISH:
+            content = event.content_spanish
+        else:
+            content = event.content_english
+
+        if send_text_message(self.number, content):
             self.alerted_at = timezone.now()
             self.save()
             event.sent_count += 1
             event.save()
             return True
+
         return False
