@@ -62,7 +62,6 @@ requirements.txt: poetry.lock
 endif
 
 $(FRONTEND_DEPENDENCIES):
-	# TODO: Install frontend dependencies if applicable
 	@ touch $@
 
 .PHONY: clean
@@ -72,7 +71,6 @@ clean:
 
 .PHONY: clean-all
 clean-all: clean
-	# TODO: Delete all frontend files
 	rm -rf $(VIRTUAL_ENV)
 
 # RUNTIME DEPENDENCIES ########################################################
@@ -87,9 +85,7 @@ migrate: install ## Database | Run database migrations
 
 .PHONY: data
 data: install migrate ## Database | Seed data for manual testing
-	$(RUN) python manage.py gendata $(TEST_EMAILS)
-	# TODO: Load test data and fixtures
-	# $(RUN) python manage.py loaddata content
+	$(RUN) python manage.py gendata
 
 .PHONY: reset
 reset: install ## Database | Create a new database, migrate, and seed it
@@ -115,7 +111,6 @@ check-backend: install format-backend
 
 .PHONY: check-frontend
 check-frontend: install
-	# TODO: Run frontend linters if applicable
 
 format-backend: install
 	$(RUN) isort $(PYTHON_PACKAGES) tests
@@ -153,7 +148,6 @@ test-frontend: test-frontend-unit
 
 .PHONY: test-frontend-unit
 test-frontend-unit: install
-	# TODO: Run frontend tests if applicable
 
 .PHONY: test-system
 test-system: install
@@ -186,7 +180,6 @@ uml: install
 
 .PHONY: build
 build: install
-	# TODO: Build frontend code for production if applicable
 
 .PHONY: promote
 promote: install

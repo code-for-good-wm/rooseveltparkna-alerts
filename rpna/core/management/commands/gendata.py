@@ -1,5 +1,4 @@
 import random
-from contextlib import suppress
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -7,10 +6,7 @@ from django.contrib.sites.models import Site
 from django.core.management.base import BaseCommand
 from django.db.utils import IntegrityError
 
-import log
 from faker import Faker
-
-# from rpna.alerts import models
 
 
 class Command(BaseCommand):
@@ -74,17 +70,7 @@ class Command(BaseCommand):
         return user
 
     def generate_review_data(self, *users):
-        count = User.objects.count()
-        while count < 50:
-            with suppress(IntegrityError):
-                user = User.objects.create(
-                    username=self.fake_username(),
-                )
-                self.stdout.write(f"Created user: {user}")
-                count += 1
-
-        # TODO: Create additional models here
-        log.debug(users)
+        pass
 
     def random_user(self, skip=None):
         skip_ids = [self.new_user_id]

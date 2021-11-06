@@ -1,9 +1,7 @@
+# Roosevelt Park's Alerting System
+
 [![CircleCI](https://img.shields.io/circleci/build/github/code-for-good-wm/rooseveltparkna-alerts)](https://circleci.com/gh/code-for-good-wm/rooseveltparkna-alerts)
 [![Coveralls](https://img.shields.io/coveralls/github/code-for-good-wm/rooseveltparkna-alerts)](https://coveralls.io/github/code-for-good-wm/rooseveltparkna-alerts)
-
-# Overview
-
-TODO: Describe this project.
 
 This project was generated with [cookiecutter](https://github.com/audreyr/cookiecutter) using [jacebrowning/template-django](https://github.com/jacebrowning/template-django).
 
