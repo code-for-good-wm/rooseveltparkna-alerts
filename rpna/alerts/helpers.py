@@ -31,7 +31,9 @@ def send_alerts() -> int:
 
     age = timezone.now() - timedelta(hours=1)
     for event in Event.objects.filter(sent_at__gte=age):
-        for profile in Profile.objects.filter(alerted_at__lte=event.sent_at):
+        for profile in Profile.objects.filter(
+            valid=True, alerted_at__lte=event.sent_at
+        ):
             if profile.alert(event):
                 count += 1
 
