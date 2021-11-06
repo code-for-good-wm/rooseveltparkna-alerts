@@ -1,8 +1,13 @@
 # mypy: ignore-errors
 
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
+
+from rpna.alerts.models import Event
+
+from .helpers import send_text_message
 
 
 def normalize(name: str) -> str:
@@ -51,6 +56,18 @@ class Profile(models.Model):
         default=timezone.now, help_text="Timestamp when user was last sent an alert."
     )
 
+    def __str__(self):
+        return self.number
+
     @property
     def number(self) -> str:
         return self.user.username
+
+    def alert(self, event: Event) -> bool:
+        if send_text_message(self.number, event.content):
+            self.alerted_at = timezone.now()
+            self.save()
+            event.sent_count += 1
+            event.save()
+            return True
+        return False

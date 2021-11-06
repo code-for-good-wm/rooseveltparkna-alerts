@@ -1,6 +1,7 @@
 from django.conf import settings
 
 import log
+from twilio.base.exceptions import TwilioRestException
 from twilio.rest import Client
 
 
@@ -20,12 +21,19 @@ def allow_debug(request) -> bool:
     return settings.DEBUG
 
 
-def send_text_message(number: str, message: str):
+def send_text_message(number: str, message: str) -> bool:
+    success = False
     client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-    message = client.messages.create(
-        to=number, from_=settings.TWILIO_NUMBER, body=message
-    )
-    log.info(f"Sent text message: {message}")
+    try:
+        message = client.messages.create(
+            to=number, from_=settings.TWILIO_NUMBER, body=message
+        )
+    except TwilioRestException as e:
+        log.error(e)
+    else:
+        log.info(f"Sent text message (sid={message.sid})")  # type: ignore
+        success = True
+    return success
 
 
 def expire_passwords() -> int:

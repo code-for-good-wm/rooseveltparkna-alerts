@@ -28,6 +28,15 @@ class Event(models.Model):
         editable=False,
         help_text="Indicates alerts has been scheduled to be sent.",
     )
+    sent_at = models.DateTimeField(
+        null=True, blank=True, help_text="The date alerts were scheduled to be sent."
+    )
+    sent_count = models.IntegerField(
+        default=0, help_text="Number of residents who have received this alert."
+    )
+
+    def __str__(self):
+        return f"Alert {self.pk}"
 
     @property
     def url(self) -> str:
