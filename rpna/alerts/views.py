@@ -33,6 +33,7 @@ def login(request):
             user = User.objects.get_or_create(username=number)[0]
             profile = Profile.objects.get_or_create(user=user)[0]
             profile.joined_at = timezone.now()
+            profile.valid = None
             profile.save()
             code = generate_code(user)
 
@@ -66,6 +67,9 @@ def login_code(request):
             password = form.cleaned_data["code"]
 
             if user := authenticate(username=username, password=password):
+                profile: Profile = user.profile  # type: ignore
+                profile.valid = True
+                profile.save()
                 force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
                 messages.success(request, "Sucesfually logged in.")
                 return redirect("rpna:setup")

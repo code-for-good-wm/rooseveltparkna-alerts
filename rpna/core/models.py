@@ -52,6 +52,11 @@ class Profile(models.Model):
     joined_at = models.DateTimeField(
         default=timezone.now, help_text="Timestamp when user requested a login code."
     )
+    valid = models.BooleanField(
+        null=True,
+        default=None,
+        help_text="Indicates a user has entered a valid login code.",
+    )
     alerted_at = models.DateTimeField(
         default=timezone.now, help_text="Timestamp when user was last sent an alert."
     )
@@ -62,6 +67,13 @@ class Profile(models.Model):
     @property
     def number(self) -> str:
         return self.user.username
+
+    def invalidate(self):
+        if not self.user.is_staff:
+            password = User.objects.make_random_password()
+            self.user.set_password(password)
+        self.valid = False
+        self.save()
 
     def alert(self, event: Event) -> bool:
         if send_text_message(self.number, event.content):

@@ -34,7 +34,3 @@ def send_text_message(number: str, message: str) -> bool:
         log.info(f"Sent text message (sid={message.sid})")  # type: ignore
         success = True
     return success
-
-
-def expire_passwords() -> int:
-    return 0
