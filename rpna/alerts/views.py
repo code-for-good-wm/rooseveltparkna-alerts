@@ -42,7 +42,7 @@ def welcome(request):
                 f"Your confirmation code is: {code}",
             )
             messages.success(request, f"Message sucesfully sent to {number}.")
-            return redirect("rpna:login-code")
+            return redirect("rpna:login")
     else:
         form = LoginForm()
 
@@ -54,7 +54,7 @@ def login(request):
     username = request.session.get("number")
     if not username:
         messages.error(request, "Unable to verify code. Please try again.")
-        return redirect("rpna:login")
+        return redirect("rpna:welcome")
 
     if request.method == "POST":
         form = LoginCodeForm(request.POST)
@@ -71,7 +71,7 @@ def login(request):
 
             # TODO: Move this to form validation
             messages.error(request, "Invalid confirmaiton code. Please try again.")
-            return redirect("rpna:login-code")
+            return redirect("rpna:login")
     else:
         form = LoginCodeForm()
 
