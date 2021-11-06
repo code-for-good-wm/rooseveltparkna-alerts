@@ -25,8 +25,8 @@ def logout(request):
 
 
 def login(request):
-    if request.method == "POST":
-        form = LoginForm(request.POST)
+    if request.method == "POST" or "number" in request.GET:
+        form = LoginForm(request.POST or request.GET)
         if form.is_valid():
             number = form.cleaned_data["number"]
             request.session["number"] = number
