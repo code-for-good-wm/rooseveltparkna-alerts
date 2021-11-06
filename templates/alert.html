@@ -4,14 +4,30 @@
 
 {% block main %}
 
-<h1>{{ event }}</h1>
+{% if spanish %}
 
-<p>{{ event.message }}</p>
+    <h1>{{ event }}</h1>
 
-{% if event.link %}
-<a class="btn btn-primary" href="{{ event.link }}">Read more</a>
+    <p>{{ event.message_spanish }}</p>
+
+    {% if event.link_spanish %}
+    <a class="btn btn-primary" href="{{ event.link_spanish }}">Lee mas</a>
+    {% endif %}
+
+    <a class="btn btn-secondary" href="{% url 'rpna:setup' %}">Configurar alertas</a>
+
+{% else %}
+
+    <h1>{{ event }}</h1>
+
+    <p>{{ event.message_english }}</p>
+
+    {% if event.link_english %}
+    <a class="btn btn-primary" href="{{ event.link_english }}">Read more</a>
+    {% endif %}
+
+    <a class="btn btn-secondary" href="{% url 'rpna:setup' %}">Configure alerts</a>
+
 {% endif %}
-
-<a class="btn btn-secondary" href="{% url 'rpna:setup' %}">Configure alerts</a>
 
 {% endblock main %}

@@ -2,19 +2,42 @@
 
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+
+class Category(models.TextChoices):
+    NEIGHBORHOOD_UPDATE = "n", _("Neighborhood Update")
+    VOLUNTEER_OPPORTUNITY = "v", _("Volunteer Opporunity")
 
 
 class Event(models.Model):
-
-    message = models.CharField(
+    category = models.CharField(max_length=1, choices=Category.choices)
+    message_english = models.CharField(
         max_length=settings.SMS_MAX_LENGTH,
+        verbose_name="Message (English)",
         help_text="The text message content, not including the URL.",
     )
-    link = models.URLField(
-        null=True, blank=True, help_text="Destination URL back to the main website."
+    message_spanish = models.CharField(
+        max_length=settings.SMS_MAX_LENGTH,
+        verbose_name="Message (Spanish)",
+        help_text="The text message content, not including the URL.",
     )
+    link_english = models.URLField(
+        verbose_name="Link (English)",
+        null=True,
+        blank=True,
+        help_text="Destination URL back to the main website.",
+    )
+    link_spanish = models.URLField(
+        verbose_name="Link (Spanish)",
+        null=True,
+        blank=True,
+        help_text="Destination URL back to the main website.",
+    )
+
     test_number = models.CharField(
         max_length=20,
         null=True,
@@ -60,9 +83,22 @@ class Event(models.Model):
         return f"Alert {self.pk}"
 
     @property
-    def url(self) -> str:
-        return f"{settings.BASE_URL}/-/{self.pk}"
+    def url_english(self) -> str:
+        return f"{settings.BASE_URL}/en/{self.pk or '#'}"
 
     @property
-    def content(self) -> str:
-        return f"{self.message}\n\n{self.url}"
+    def url_spanish(self) -> str:
+        return f"{settings.BASE_URL}/es/{self.pk or '#'}"
+
+    @property
+    def content_english(self) -> str:
+        return f"{self.message_english}\n\n{self.url_english}"
+
+    @property
+    def content_spanish(self) -> str:
+        return f"{self.message_spanish}\n\n{self.url_spanish}"
+
+    def clean(self):
+        count = bool(self.link_english) + bool(self.link_spanish)
+        if count == 1:
+            raise ValidationError("A link is required for all languages.")

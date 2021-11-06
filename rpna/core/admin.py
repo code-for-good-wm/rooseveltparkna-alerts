@@ -18,10 +18,11 @@ class ProfileAdmin(admin.ModelAdmin):
 
     search_fields = ["user__username"]
 
-    list_filter = ["valid"]
+    list_filter = ["valid", "language"]
     list_display = [
         "number",
         "joined_at",
         "valid",
+        "language",
         "alerted_at",
     ]
