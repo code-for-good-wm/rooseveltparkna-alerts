@@ -13,8 +13,8 @@ from .helpers import generate_code
 from .models import User
 
 
-def index(request):
-    return render(request, "index.html")
+def index(_request):
+    return redirect("rpna:setup")
 
 
 def logout(request):
