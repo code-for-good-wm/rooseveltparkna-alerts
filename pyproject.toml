@@ -39,6 +39,7 @@ faker = "*"
 minilog = "^2.0"
 pygraphviz = { version = "^1.7", optional = true }
 phonenumbers = "^8.12.36"
+twilio = "^7.3.0"
 
 [tool.poetry.dev-dependencies]
 
