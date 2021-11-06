@@ -11,6 +11,7 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ["sent"]
     list_display = [
         "id",
+        "created_by",
         "sent",
     ]
 

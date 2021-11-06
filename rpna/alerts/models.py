@@ -6,6 +6,14 @@ from django.db import models
 
 class Event(models.Model):
 
+    created_by = models.ForeignKey(
+        User,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        help_text="The organizer who drafted this alert.",
+    )
+
     sent = models.BooleanField(
         default=False,
         editable=False,
