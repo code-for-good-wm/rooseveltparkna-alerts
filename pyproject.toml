@@ -4,8 +4,8 @@ name = "rpna-alerts"
 version = "1.0"
 description = "Alerts system for Roosevelt Park Neighborhood Association."
 
-authors = ["Code for Good WM <admin@https://codeforgoodwm.org/>"]
-license = "Unlicensed"
+authors = ["Code for Good West Michigan <admin@https://codeforgoodwm.org/>"]
+license = "MIT"
 
 [tool.poetry.dependencies]
 
