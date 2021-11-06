@@ -1,6 +1,6 @@
 from django import forms
 
-import phonenumbers
+from .helpers import format_number
 
 
 class LoginForm(forms.Form):
@@ -11,11 +11,10 @@ class LoginForm(forms.Form):
     )
 
     def clean_number(self):
-        try:
-            parsed = phonenumbers.parse(self.cleaned_data["number"], "US")
-        except phonenumbers.NumberParseException as e:
-            raise forms.ValidationError(e.args[0])
-        return phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.E164)
+        value, error = format_number(self.cleaned_data["number"])
+        if error:
+            raise forms.ValidationError(error)
+        return value
 
 
 class LoginCodeForm(forms.Form):

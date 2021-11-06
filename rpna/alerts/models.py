@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 
 class Event(models.Model):
@@ -14,7 +15,18 @@ class Event(models.Model):
     link = models.URLField(
         null=True, blank=True, help_text="Destination URL back to the main website."
     )
+    test_number = models.CharField(
+        max_length=20,
+        null=True,
+        blank=True,
+        help_text="Mobile number to send a test message.",
+    )
 
+    created_at = models.DateTimeField(
+        default=timezone.now,
+        editable=False,
+        help_text="The date this event was first drafted.",
+    )
     created_by = models.ForeignKey(
         User,
         null=True,
@@ -40,6 +52,9 @@ class Event(models.Model):
         editable=False,
         help_text="Number of residents who have received this alert.",
     )
+
+    class Meta:
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"Alert {self.pk}"

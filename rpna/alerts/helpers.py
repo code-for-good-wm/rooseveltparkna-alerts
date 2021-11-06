@@ -4,9 +4,19 @@ from datetime import timedelta
 
 from django.utils import timezone
 
+import phonenumbers
+
 from rpna.core.models import Profile
 
 from .models import Event
+
+
+def format_number(value: str) -> tuple[str, str]:
+    try:
+        parsed = phonenumbers.parse(value, "US")
+    except phonenumbers.NumberParseException as e:
+        return value, e.args[0]
+    return phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.E164), ""
 
 
 def generate_code(user):
