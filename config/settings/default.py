@@ -1,4 +1,8 @@
 import os
+from datetime import timedelta
+
+from django.contrib import messages
+from django.utils import timezone
 
 import grappelli
 
@@ -28,6 +32,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "drf_yasg",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "rpna.api",
     "rpna.core",
     "rpna.alerts",
@@ -95,6 +101,10 @@ SITE_ID = 1
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/setup"
+LOGOUT_REDIRECT_URL = "/"
+
 ###############################################################################
 # Sessions
 
@@ -143,3 +153,28 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_COLLAPSED": True,
     "SHOW_TOOLBAR_CALLBACK": "rpna.core.helpers.allow_debug",
 }
+
+###############################################################################
+# Bootstrap
+
+MESSAGE_TAGS = {
+    messages.DEBUG: "alert-info",
+    messages.INFO: "alert-info",
+    messages.SUCCESS: "alert-success",
+    messages.WARNING: "alert-warning",
+    messages.ERROR: "alert-danger",
+}
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+###############################################################################
+# Django Sesame
+
+SESAME_TOKEN_NAME = "token"
+SESAME_MAX_AGE = timedelta(days=30)
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "sesame.backends.ModelBackend",
+]

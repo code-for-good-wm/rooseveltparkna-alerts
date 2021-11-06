@@ -5,7 +5,7 @@ from django.urls import include, path
 import debug_toolbar
 
 urlpatterns = [
-    path("", include("rpna.alerts.urls", namespace="alerts")),
+    path("", include("rpna.alerts.urls", namespace="rpna")),
     path("api/", include("rpna.api.urls")),
     path("admin/", admin.site.urls),
     path("grappelli/", include("grappelli.urls")),

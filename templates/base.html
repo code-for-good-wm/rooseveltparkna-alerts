@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Ballot Buddies{% endblock title %}</title>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'icons/safari-pinned-tab.svg' %}" color="#f55221">
+    <meta name="msapplication-TileColor" content="#f55221">
+    <meta name="theme-color" content="#ffffff">
+
+    {% block meta %}
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Michigan Ballot Buddies">
+    <meta name="description" content="An app to help friends hold each other accountable to vote in every election.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://buddies.michiganelections.io/">
+    <meta property="og:title" content="Michigan Ballot Buddies">
+    <meta property="og:description" content="An app to help friends hold each other accountable to vote in every election.">
+    <meta property="og:image" content="https://buddies.michiganelections.io{% static 'logo.png' %}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://buddies.michiganelections.io/">
+    <meta property="twitter:title" content="Michigan Ballot Buddies">
+    <meta property="twitter:description" content="An app to help friends hold each other accountable to vote in every election.">
+    <meta property="twitter:image" content="https://buddies.michiganelections.io{% static 'logo.png' %}">
+    {% endblock meta %}
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Custom Styles -->
+    <link href="{% static 'styles/footer.css' %}" rel="stylesheet">
+
+</head>
+<body>
+    {% block content %}
+    <div class="container my-3">
+
+        {% include "_messages.html" %}
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-12">
+                {% block main %}{% endblock main %}
+            </div>
+        </div>
+
+    </div>
+    {% endblock content %}
+
+    {% comment %} {% include "_footer.html" %} {% endcomment %}
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.5.0" integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI" crossorigin="anonymous"></script>
+
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>
