@@ -57,8 +57,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     language = models.CharField(max_length=2, choices=Language.choices)
-    neighborhood_updates = models.BooleanField(_("Neighborhood Updates"))
-    volunteer_opportunities = models.BooleanField(_("Volunteer Opportunities"))
+    neighborhood_updates = models.BooleanField(
+        default=False, verbose_name=_("Neighborhood Updates")
+    )
+    volunteer_opportunities = models.BooleanField(
+        default=False, verbose_name=_("Volunteer Opportunities")
+    )
 
     joined_at = models.DateTimeField(
         default=timezone.now, help_text="Timestamp when user requested a login code."
