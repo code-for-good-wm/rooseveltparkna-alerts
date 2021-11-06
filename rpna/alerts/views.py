@@ -86,6 +86,9 @@ def login_code(request):
 
 @login_required
 def setup(request):
+    if request.user.is_staff:
+        messages.info(request, "Staff user is now logged out.")
+        return redirect("rpna:logout")
     return render(request, "setup.html")
 
 
