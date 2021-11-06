@@ -9,6 +9,7 @@ from django.shortcuts import redirect, render
 from rpna.core.helpers import allow_debug, send_text_message
 
 from .forms import LoginCodeForm, LoginForm
+from .helpers import generate_code
 from .models import User
 
 
@@ -27,9 +28,8 @@ def login(request):
         if form.is_valid():
             number = form.cleaned_data["number"]
             request.session["number"] = number
-            user: User = User.objects.get_or_create(username=number)[0]
-            user.set_password("1234")
-            user.save()
+            user = User.objects.get_or_create(username=number)[0]
+            code = generate_code(user)
 
             if "debug" in request.POST and allow_debug(request):
                 force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
@@ -37,7 +37,8 @@ def login(request):
 
             send_text_message(
                 number,
-                "Welcome to Roosevelt Park's messaging system!\n\nYour confirmation code is: 1234",
+                "Welcome to Roosevelt Park's messaging system!\n\n"
+                f"Your confirmation code is: {code}",
             )
             messages.success(request, f"Message sucesfully sent to {number}.")
             return redirect("rpna:login-code")
