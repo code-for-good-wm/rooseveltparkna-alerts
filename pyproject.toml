@@ -1,10 +1,10 @@
 [tool.poetry]
 
-name = "rpna"
-version = "0.0"
-description = ""
+name = "rpna-alerts"
+version = "1.0"
+description = "Alerts system for Roosevelt Park Neighborhood Association."
 
-authors = ["Code for Good <you@yourdomain.com>"]
+authors = ["Code for Good WM <admin@https://codeforgoodwm.org/>"]
 license = "Unlicensed"
 
 [tool.poetry.dependencies]
