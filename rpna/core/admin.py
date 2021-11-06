@@ -11,7 +11,6 @@ admin.site.index_title = "Home"
 class ProfileAdmin(admin.ModelAdmin):
 
     list_display = [
-        "id",
         "number",
         "joined_at",
         "alerted_at",

@@ -31,15 +31,11 @@ class EventAdmin(admin.ModelAdmin):
 
     list_filter = ["sent"]
     list_display = [
-        "id",
-        "URL",
         "message",
         "Link",
-        "created_by",
-        "created_at",
+        "URL",
         "sent",
-        "sent_at",
-        "sent_count",
+        "created_at",
     ]
 
     @staticmethod
@@ -53,6 +49,7 @@ class EventAdmin(admin.ModelAdmin):
     def Link(instance):
         if url := instance.link:
             return format_html(f'<a href="{url}" target="_blank">{url}</a>')
+        return None
 
     actions = [send_selected_events]
 
