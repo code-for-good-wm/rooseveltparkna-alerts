@@ -26,8 +26,9 @@ def login(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             number = form.cleaned_data["number"]
+            request.session["number"] = number
             user: User = User.objects.get_or_create(username=number)[0]
-            user.set_password("123")
+            user.set_password("1234")
             user.save()
 
             if "debug" in request.POST and allow_debug(request):
@@ -39,7 +40,6 @@ def login(request):
                 "Welcome to Roosevelt Park's messaging system!\n\nYour confirmation code is: 123",
             )
             messages.success(request, f"Message sucesfully sent to {number}.")
-            request.session["number"] = number
             return redirect("rpna:login-code")
     else:
         form = LoginForm()
@@ -58,10 +58,12 @@ def login_code(request):
         form = LoginCodeForm(request.POST)
         if form.is_valid():
             password = form.cleaned_data["code"]
+
             if user := authenticate(username=username, password=password):
                 force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
                 messages.success(request, "Sucesfually logged in.")
                 return redirect("rpna:setup")
+
             # TODO: Move this to form validation
             messages.error(request, "Invalid confirmaiton code. Please try again.")
             return redirect("rpna:login-code")
