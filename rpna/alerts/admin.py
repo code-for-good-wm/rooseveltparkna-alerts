@@ -37,4 +37,13 @@ class EventAdmin(admin.ModelAdmin):
 
     actions = [send_selected_events]
 
-    readonly_fields = ["content", "sent"]
+    readonly_fields = [
+        "created_by",
+        "sent",
+        "sent_at",
+        "sent_count",
+    ]
+
+    def save_model(self, request, obj, form, change):
+        obj.created_by = request.user
+        super().save_model(request, obj, form, change)

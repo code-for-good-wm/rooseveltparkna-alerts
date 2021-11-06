@@ -19,6 +19,7 @@ class Event(models.Model):
         User,
         null=True,
         blank=True,
+        editable=False,
         on_delete=models.SET_NULL,
         help_text="The organizer who drafted this alert.",
     )
@@ -29,10 +30,15 @@ class Event(models.Model):
         help_text="Indicates alerts has been scheduled to be sent.",
     )
     sent_at = models.DateTimeField(
-        null=True, blank=True, help_text="The date alerts were scheduled to be sent."
+        null=True,
+        blank=True,
+        editable=False,
+        help_text="The date alerts were scheduled to be sent.",
     )
     sent_count = models.IntegerField(
-        default=0, help_text="Number of residents who have received this alert."
+        default=0,
+        editable=False,
+        help_text="Number of residents who have received this alert.",
     )
 
     def __str__(self):

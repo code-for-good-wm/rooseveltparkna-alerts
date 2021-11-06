@@ -1,9 +1,9 @@
 from django.core.management.base import BaseCommand
 
+import log
+
 from rpna.alerts.helpers import send_alerts
 from rpna.core.helpers import expire_passwords
-
-import log
 
 
 class Command(BaseCommand):
