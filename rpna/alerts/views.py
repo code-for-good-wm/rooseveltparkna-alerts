@@ -71,7 +71,7 @@ def login_code(request):
                 profile.valid = True
                 profile.save()
                 force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
-                messages.success(request, "Sucesfually logged in.")
+                messages.success(request, "Sucessfully logged in.")
                 return redirect("rpna:setup")
 
             # TODO: Move this to form validation

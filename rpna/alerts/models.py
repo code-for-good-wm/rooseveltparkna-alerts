@@ -84,11 +84,11 @@ class Event(models.Model):
 
     @property
     def url_english(self) -> str:
-        return f"{settings.BASE_URL}/en/{self.pk}"
+        return f"{settings.BASE_URL}/en/{self.pk or '#'}"
 
     @property
     def url_spanish(self) -> str:
-        return f"{settings.BASE_URL}/es/{self.pk}"
+        return f"{settings.BASE_URL}/es/{self.pk or '#'}"
 
     @property
     def content_english(self) -> str:
