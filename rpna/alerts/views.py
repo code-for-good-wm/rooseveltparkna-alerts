@@ -31,7 +31,6 @@ def welcome(request):
             user = User.objects.get_or_create(username=number)[0]
             profile = Profile.objects.get_or_create(user=user)[0]
             profile.joined_at = timezone.now()
-            profile.valid = None
             profile.save()
             code = generate_code(user)
 
