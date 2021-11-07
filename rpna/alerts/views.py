@@ -23,7 +23,7 @@ def welcome(request):
     if request.user.is_authenticated:
         return redirect("rpna:setup")
 
-    if request.method == "POST" or "number" in request.GET:
+    if request.method == "POST" or request.GET.get("number"):
         form = LoginForm(request.POST or request.GET)
         if form.is_valid():
             number = form.cleaned_data["number"]
