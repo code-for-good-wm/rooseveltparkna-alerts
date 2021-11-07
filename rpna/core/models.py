@@ -55,7 +55,9 @@ class Profile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    language = models.CharField(max_length=2, choices=Language.choices)
+    language = models.CharField(
+        max_length=2, choices=Language.choices, verbose_name=_("Language Preference")
+    )
     neighborhood_updates = models.BooleanField(
         default=True, verbose_name=_("Neighborhood Updates")
     )

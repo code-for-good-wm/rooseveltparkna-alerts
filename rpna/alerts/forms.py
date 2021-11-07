@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from rpna.core.models import Profile
 
@@ -8,7 +9,7 @@ from .utils import format_number
 class LoginForm(forms.Form):
     number = forms.CharField(
         required=True,
-        label="Mobile Phone Number",
+        label=_("Mobile Phone Number"),
         widget=forms.TextInput(attrs={"type": "tel", "autofocus": True}),
     )
 
@@ -22,7 +23,7 @@ class LoginForm(forms.Form):
 class LoginCodeForm(forms.Form):
     code = forms.CharField(
         required=True,
-        label="Confirmation Code",
+        label=_("Confirmation Code"),
         widget=forms.TextInput(attrs={"autofocus": True}),
     )
 
