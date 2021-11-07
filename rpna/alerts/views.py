@@ -90,6 +90,13 @@ def setup(request):
         messages.info(request, "Staff user is now logged out.")
         return redirect("rpna:logout")
 
+    if "delete" in request.POST:
+        request.user.delete()
+        messages.info(
+            request, _("Good bye! You will no longer receveice text messages from us.")
+        )
+        return redirect("rpna:welcome")
+
     if request.method == "POST":
         form = SetupForm(request.POST, instance=request.user.profile)
         if form.is_valid():
