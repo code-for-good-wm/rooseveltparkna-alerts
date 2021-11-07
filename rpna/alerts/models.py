@@ -80,7 +80,7 @@ class Event(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"{self.pk}"
+        return f"{self.get_category_display()} {self.pk}"
 
     @property
     def url_english(self) -> str:
