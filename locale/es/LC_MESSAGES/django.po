@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-07 00:20-0400\n"
+"POT-Creation-Date: 2021-11-07 00:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,23 +34,23 @@ msgstr "¡Bienvenido al sistema de mensajería de Roosevelt Park!"
 msgid "Your confirmation code is"
 msgstr "Tu código de confirmación es"
 
-#: rpna/alerts/views.py:57
+#: rpna/alerts/views.py:58
 msgid "Unable to verify code. Please try again."
 msgstr "No se pudo verificar el código. Inténtalo de nuevo."
 
-#: rpna/alerts/views.py:73
+#: rpna/alerts/views.py:74
 msgid "Invalid confirmaiton code. Please try again."
 msgstr "Código de confirmación inválido. Inténtalo de nuevo."
 
-#: rpna/alerts/views.py:92
+#: rpna/alerts/views.py:93
 msgid "Staff user is now logged out."
 msgstr "El usuario del personal ahora está desconectado."
 
-#: rpna/alerts/views.py:98
+#: rpna/alerts/views.py:99
 msgid "Good bye! You will no longer receveice text messages from us."
 msgstr "¡Adiós! Ya no recibirás mensajes de texto nuestros."
 
-#: rpna/alerts/views.py:107
+#: rpna/alerts/views.py:108
 msgid "Successfully updated your preferences."
 msgstr "Actualizó con éxito sus preferencias."
 
@@ -70,7 +70,7 @@ msgstr "Actualizaciones del vecindario"
 msgid "Volunteer Opportunities"
 msgstr "Oportunidades para voluntarios"
 
-#: rpna/core/models.py:109
+#: rpna/core/models.py:113
 msgid "Please select at least one type of alert."
 msgstr "Seleccione al menos un tipo de alerta."
 
@@ -95,8 +95,8 @@ msgid "Your Preferences"
 msgstr "Tus preferencias"
 
 #: templates/setup.html:10
-msgid "Choose the type of messages you'd like sent to"
-msgstr "Elige el tipo de mensajes al que te gustaría enviar"
+msgid "Configure which type of alerts we'll sent to"
+msgstr "Configure a qué tipo de alertas enviaremos"
 
 #: templates/setup.html:17
 msgid "Save"

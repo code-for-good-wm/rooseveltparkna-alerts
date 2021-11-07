@@ -82,6 +82,10 @@ class Profile(models.Model):
     def number(self) -> str:
         return self.user.username
 
+    @property
+    def display_number(self) -> str:
+        return self.number[2:]
+
     def invalidate(self):
         if not self.user.is_staff:
             password = User.objects.make_random_password()
