@@ -30,6 +30,7 @@ class CustomModelBackend(ModelBackend):
             first_name, last_name = display_name.rsplit(" ", 1)
         else:
             first_name = display_name
+            last_name = ""
 
         user, created = User.objects.update_or_create(
             username=username,
