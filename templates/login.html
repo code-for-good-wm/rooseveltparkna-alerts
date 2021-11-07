@@ -1,19 +1,20 @@
 {% extends "base.html" %}
 
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block main %}
 
-<h1>Log in</h1>
+<h1>{% translate "Log In" %}</h1>
 
-<p>Please enter the code sent to your phone.</p>
+<p>{% translate "Please enter the code sent to your phone." %}</p>
 
 <form method="post" novalidate>
   {% csrf_token %}
 
   {{ form|crispy }}
 
-  <button class="btn btn-primary" type="submit">Finish setup</button>
+  <button class="btn btn-primary" type="submit">{% translate "Finish setup" %}</button>
 </form>
 
 {% endblock main %}

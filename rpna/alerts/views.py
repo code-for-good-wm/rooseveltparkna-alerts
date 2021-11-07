@@ -38,10 +38,9 @@ def welcome(request):
 
             send_text_message(
                 number,
-                "Welcome to Roosevelt Park's messaging system!\n\n"
-                f"Your confirmation code is: {code}",
+                _("Welcome to Roosevelt Park's messaging system!\n\nYour confirmation code is: ") + code,
             )
-            messages.success(request, f"Message successfully sent to {number}.")
+            messages.success(request, _("Message successfully sent to ") + number)
             return redirect("rpna:login")
     else:
         form = LoginForm()
@@ -53,7 +52,7 @@ def welcome(request):
 def login(request):
     username = request.session.get("number")
     if not username:
-        messages.error(request, "Unable to verify code. Please try again.")
+        messages.error(request, _("Unable to verify code. Please try again."))
         return redirect("rpna:welcome")
 
     if request.method == "POST":
@@ -66,11 +65,11 @@ def login(request):
                 profile.valid = True
                 profile.save()
                 force_login(request, user)
-                messages.success(request, "Successfully logged in.")
+                messages.success(request, _("Successfully logged in."))
                 return redirect("rpna:setup")
 
             # TODO: Move this to form validation
-            messages.error(request, "Invalid confirmaiton code. Please try again.")
+            messages.error(request, _("Invalid confirmaiton code. Please try again."))
             return redirect("rpna:login")
     else:
         form = LoginCodeForm()
@@ -89,7 +88,7 @@ def logout(request):
 @login_required
 def setup(request):
     if request.user.is_staff:
-        messages.info(request, "Staff user is now logged out.")
+        messages.info(request, _("Staff user is now logged out."))
         return redirect("rpna:logout")
 
     if "delete" in request.POST:
