@@ -24,7 +24,7 @@ class LoginCodeForm(forms.Form):
     code = forms.CharField(
         required=True,
         label=_("Confirmation Code"),
-        widget=forms.TextInput(attrs={"autofocus": True}),
+        widget=forms.TextInput(attrs={"type": "number", "autofocus": True}),
     )
 
 
