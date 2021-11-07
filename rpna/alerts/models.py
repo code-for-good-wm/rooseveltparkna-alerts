@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 class Category(models.TextChoices):
     NEIGHBORHOOD_UPDATE = "n", _("Neighborhood Update")
-    VOLUNTEER_OPPORTUNITY = "v", _("Volunteer Opporunity")
+    VOLUNTEER_OPPORTUNITY = "v", _("Volunteer Opportunity")
 
 
 class Event(models.Model):
@@ -18,12 +18,12 @@ class Event(models.Model):
     message_english = models.CharField(
         max_length=settings.SMS_MAX_LENGTH,
         verbose_name="Message (English)",
-        help_text="The text message content, not including the URL.",
+        help_text=f"The text message content, not including the URL. ({settings.SMS_MAX_LENGTH} characters)",
     )
     message_spanish = models.CharField(
         max_length=settings.SMS_MAX_LENGTH,
         verbose_name="Message (Spanish)",
-        help_text="The text message content, not including the URL.",
+        help_text=f"The text message content, not including the URL. ({settings.SMS_MAX_LENGTH} characters)",
     )
     link_english = models.URLField(
         verbose_name="Link (English)",
@@ -92,11 +92,15 @@ class Event(models.Model):
 
     @property
     def content_english(self) -> str:
-        return f"{self.message_english}\n\n{self.url_english}"
+        return settings.SMS_TEMPLATE.format(
+            message=self.message_english, details="Details", url=self.url_english
+        )
 
     @property
     def content_spanish(self) -> str:
-        return f"{self.message_spanish}\n\n{self.url_spanish}"
+        return settings.SMS_TEMPLATE.format(
+            message=self.message_spanish, details="Detalles", url=self.url_spanish
+        )
 
     def clean(self):
         count = bool(self.link_english) + bool(self.link_spanish)

@@ -53,29 +53,9 @@ class EventAdmin(admin.ModelAdmin):
             return format_html(f'<a href="{url}" target="_blank">{url}</a>')
         return None
 
-    @staticmethod
-    @admin.display(description="URL (English)")
-    def _url_english(instance):
-        url = instance.url_english
-        return format_html(f'<a href="{url}" target="_blank">{url}</a>')
-
-    @staticmethod
-    @admin.display(description="URL (Spanish)")
-    def _url_spanish(instance):
-        url = instance.url_spanish
-        return format_html(f'<a href="{url}" target="_blank">{url}</a>')
-
     actions = [send_selected_events]
 
-    readonly_fields = [
-        "_url_english",
-        "_url_spanish",
-        "created_by",
-        "created_at",
-        "sent",
-        "sent_at",
-        "sent_count",
-    ]
+    readonly_fields = ["created_by", "created_at"]
 
     def save_model(self, request, obj, form, change):
         obj.test_number = format_number(obj.test_number)[0]

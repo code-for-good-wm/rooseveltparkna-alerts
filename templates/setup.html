@@ -5,9 +5,9 @@
 
 {% block main %}
 
-<h1>Set up</h1>
+<h1>{% translate "Your Preferences" %}</h1>
 
-<p>You are logged in as {{ request.user }}.</p>
+<p>{% translate "Choose the type of messages you'd like sent to" %} <code>{{ request.user }}</code>.</p>
 
 <form method="post" novalidate>
   {% csrf_token %}

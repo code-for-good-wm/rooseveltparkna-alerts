@@ -4,9 +4,9 @@
 
 {% block main %}
 
-{% if spanish %}
+<h1>Roosevelt Park Neighborhood Organization</h1>
 
-    <h1>{{ event }}</h1>
+{% if spanish %}
 
     <p>{{ event.message_spanish }}</p>
 
@@ -14,11 +14,9 @@
     <a class="btn btn-primary" href="{{ event.link_spanish }}">Lee mas</a>
     {% endif %}
 
-    <a class="btn btn-secondary" href="{% url 'rpna:setup' %}">Configurar alertas</a>
+    <a class="btn btn-outline-secondary" href="{% url 'rpna:setup' %}">Cambiar preferencias</a>
 
 {% else %}
-
-    <h1>{{ event }}</h1>
 
     <p>{{ event.message_english }}</p>
 
@@ -26,7 +24,7 @@
     <a class="btn btn-primary" href="{{ event.link_english }}">Read more</a>
     {% endif %}
 
-    <a class="btn btn-secondary" href="{% url 'rpna:setup' %}">Configure alerts</a>
+    <a class="btn btn-outline-secondary" href="{% url 'rpna:setup' %}">Change preferences</a>
 
 {% endif %}
 
