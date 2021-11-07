@@ -41,6 +41,6 @@ def site_loading():
     with suppress(WebDriverException):
         user.visit("/")
 
-    loaded = user.browser.is_text_present("Welcome")
+    loaded = user.browser.is_text_present("Alerts")
 
     return not loaded

@@ -123,7 +123,7 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "US/Michigan"
 
 USE_I18N = True
-LOCALE_PATHS = [os.path.join(CONFIG_ROOT, "locale")]
+LOCALE_PATHS = [os.path.join(PROJECT_ROOT, "locale")]
 
 USE_L10N = True
 
