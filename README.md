@@ -15,7 +15,6 @@ The following must be installed on your system:
 - Python
 - Poetry
 - PostgreSQL
-  - If using Ubuntu on WSL2 and keeping the default socket connection, change the postgres' user's authentication method to `trust` instead of `peer` so you can run commands with your Ubuntu login. Configuration can be found in `/etc/postgresql/{version}/main/pg_hba.conf`. Be sure to restart the postgres service after saving changes. This also requires changing `config\settings\local.py` to use `"USER": "postgres"` instead of `"HOST": "127.0.0.1"`
 
 To confirm the correct versions are installed:
 

@@ -11,6 +11,7 @@
 * Python: `$ pyenv install` or `$ asdf install`
 * Poetry: https://python-poetry.org/docs/#installation
 * PostgreSQL: `$ brew install postgres`
+    - If using Ubuntu on WSL2 and keeping the default socket connection, change the postgres' user's authentication method to `trust` instead of `peer` so you can run commands with your Ubuntu login. Configuration can be found in `/etc/postgresql/{version}/main/pg_hba.conf`. Be sure to restart the postgres service after saving changes. This also requires changing `config\settings\local.py` to use `"USER": "postgres"` instead of `"HOST": "127.0.0.1"`
 * direnv: https://direnv.net/
 
 To confirm these system dependencies are configured correctly:
