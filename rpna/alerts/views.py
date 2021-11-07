@@ -41,7 +41,9 @@ def welcome(request):
 
             send_text_message(
                 number,
-                _("Welcome to Roosevelt Park's messaging system!")
+                _(
+                    "Welcome to Roosevelt Park Neighborhood Association's messaging system!"
+                )
                 + "\n\n"
                 + _("Your confirmation code is")
                 + ": "
@@ -78,7 +80,7 @@ def login(request):
                 force_login(request, user)
                 return redirect("rpna:setup")
 
-            messages.error(request, _("Invalid confirmaiton code. Please try again."))
+            messages.error(request, _("Invalid confirmation code. Please try again."))
             return redirect("rpna:login")
     else:
         form = LoginCodeForm()
@@ -103,7 +105,7 @@ def setup(request):
     if "delete" in request.POST:
         request.user.delete()
         messages.info(
-            request, _("Good bye! You will no longer receveice text messages from us.")
+            request, _("Good bye! You will no longer receive text messages from us.")
         )
         return redirect("rpna:welcome")
 
