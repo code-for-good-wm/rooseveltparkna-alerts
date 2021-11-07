@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-07 09:00-0500\n"
+"POT-Creation-Date: 2021-11-07 09:26-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,6 @@ msgstr ""
 #: rpna/alerts/forms.py:12
 msgid "Mobile Phone Number"
 msgstr "Número de teléfono móvil"
-
-msgid "Your confirmation code is"
-msgstr "Tu código de confirmación es"
 
 #: rpna/alerts/forms.py:26
 msgid "Confirmation Code"
@@ -62,12 +59,8 @@ msgid "Good bye! You will no longer receveice text messages from us."
 msgstr "¡Adiós! Ya no recibirás mensajes de texto nuestros."
 
 #: rpna/alerts/views.py:119
-msgid ""
-"You're all set to receive alerts from Roosevelt Park Neighborhood "
-"Organization!"
-msgstr ""
-"¡Ya está todo listo para recibir alertas del vecindario de Roosevelt Park "
-"Organización!"
+msgid "You're all set to receive alerts from Roosevelt Park Neighborhood Association!"
+msgstr "¡Ya está todo listo para recibir alertas del vecindario de Roosevelt Park Neighborhood Association!"
 
 #: rpna/alerts/views.py:122
 msgid "Configure your preferences"
@@ -78,9 +71,6 @@ msgid "Successfully updated your preferences."
 msgstr "Actualizó con éxito sus preferencias."
 
 #: rpna/core/models.py:59
-msgid "Configure your preferences"
-msgstr "Configura tus preferencias"
-
 msgid "Language Preference"
 msgstr "Preferencia de Idioma"
 
@@ -95,6 +85,10 @@ msgstr "Oportunidades para voluntarios"
 #: rpna/core/models.py:122
 msgid "Please select at least one type of alert."
 msgstr "Seleccione al menos un tipo de alerta."
+
+#: templates/base.html:24 templates/base.html:30 templates/base.html:37
+msgid "TODO: Meta_Description"
+msgstr ""
 
 #: templates/login.html:8 templates/welcome.html:8
 msgid "Get Text Alerts"

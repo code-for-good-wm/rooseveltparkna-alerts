@@ -116,7 +116,7 @@ def setup(request):
             send_text_message(
                 profile.number,
                 _(
-                    "You're all set to receive alerts from Roosevelt Park Neighborhood Organization!"
+                    "You're all set to receive alerts from Roosevelt Park Neighborhood Association!"
                 )
                 + "\n\n"
                 + _("Configure your preferences")

@@ -180,7 +180,7 @@ TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
 TWILIO_NUMBER = "+16162242352"
 
 SMS_TEMPLATE = (
-    "Roosevelt Park Neighborhood Assoccation:"
+    "Roosevelt Park Neighborhood Association:"
     "\n\n"
     "{message}"
     "\n\n"
