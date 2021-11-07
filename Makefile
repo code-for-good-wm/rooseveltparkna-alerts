@@ -164,8 +164,8 @@ run-production: .envrc install
 
 # DOCUMENTATION TARGETS #######################################################
 
-.PHONY: i18n-prepare
-i18n-prepare: install
+.PHONY: i18n-generate
+i18n-generate: install
 	poetry run django-admin makemessages --locale es
 
 .PHONY: i18n-compile

@@ -38,12 +38,12 @@ def welcome(request):
 
             send_text_message(
                 number,
-                _(
-                    "Welcome to Roosevelt Park's messaging system!\n\nYour confirmation code is: "
-                )
+                _("Welcome to Roosevelt Park's messaging system!")
+                + "\n\n"
+                + _("Your confirmation code is")
+                + ": "
                 + code,
             )
-            messages.success(request, _("Message successfully sent to ") + number)
             return redirect("rpna:login")
     else:
         form = LoginForm()
@@ -68,7 +68,6 @@ def login(request):
                 profile.valid = True
                 profile.save()
                 force_login(request, user)
-                messages.success(request, _("Successfully logged in."))
                 return redirect("rpna:setup")
 
             # TODO: Move this to form validation
