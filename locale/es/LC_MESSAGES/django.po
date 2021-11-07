@@ -32,11 +32,11 @@ msgstr "Actualización del vecindario"
 
 #: rpna/alerts/models.py:13
 msgid "Volunteer Opportunity"
-msgstr "Volunteer Opportunity"
+msgstr "Oportunidad para Voluntario"
 
 #: rpna/alerts/views.py:44
-msgid "Welcome to Roosevelt Park's messaging system!"
-msgstr "¡Bienvenido al sistema de mensajería de Roosevelt Park!"
+msgid "Welcome to Roosevelt Park Neighborhood Association's messaging system!"
+msgstr "¡Bienvenido al sistema de mensajería de Roosevelt Park Neighborhood Association!"
 
 #: rpna/alerts/views.py:46
 msgid "Your confirmation code is"
@@ -47,7 +47,7 @@ msgid "Unable to verify code. Please try again."
 msgstr "No se pudo verificar el código. Inténtalo de nuevo."
 
 #: rpna/alerts/views.py:82
-msgid "Invalid confirmaiton code. Please try again."
+msgid "Invalid confirmation code. Please try again."
 msgstr "Código de confirmación inválido. Inténtalo de nuevo."
 
 #: rpna/alerts/views.py:101
@@ -55,7 +55,7 @@ msgid "Staff user is now logged out."
 msgstr "El usuario del personal ahora está desconectado."
 
 #: rpna/alerts/views.py:107
-msgid "Good bye! You will no longer receveice text messages from us."
+msgid "Good bye! You will no longer receive text messages from us."
 msgstr "¡Adiós! Ya no recibirás mensajes de texto nuestros."
 
 #: rpna/alerts/views.py:119
@@ -80,7 +80,7 @@ msgstr "Actualizaciones del vecindario"
 
 #: rpna/core/models.py:65
 msgid "Volunteer Opportunities"
-msgstr "Oportunidades para voluntarios"
+msgstr "Oportunidades para Voluntarios"
 
 #: rpna/core/models.py:122
 msgid "Please select at least one type of alert."
@@ -107,12 +107,12 @@ msgid "Your Preferences"
 msgstr "Tus preferencias"
 
 #: templates/setup.html:10
-msgid "Configure which type of alerts we'll sent to"
+msgid "Configure which type of alerts we'll send to"
 msgstr "Configure a qué tipo de alertas enviaremos"
 
 #: templates/setup.html:17
 msgid "Save"
-msgstr "Ahorrar"
+msgstr "Guardar"
 
 #: templates/setup.html:18
 msgid "Disable all alerts"
