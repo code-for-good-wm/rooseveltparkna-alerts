@@ -25,4 +25,8 @@ class ProfileAdmin(admin.ModelAdmin):
         "valid",
         "language",
         "alerted_at",
+        "received_count",
+        "updated_at",
     ]
+
+    ordering = ["-updated_at"]

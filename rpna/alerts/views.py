@@ -47,6 +47,8 @@ def welcome(request):
                 + ": "
                 + code,
             )
+            profile.received_count += 1
+            profile.save()
             response = redirect("rpna:login")
             if language:
                 response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
@@ -111,6 +113,19 @@ def setup(request):
         if form.is_valid():
             profile = form.save()
             translation.activate(profile.language)
+            send_text_message(
+                profile.number,
+                _(
+                    "You're all set to receive alerts from Roosevelt Park Neighborhood Organization!"
+                )
+                + "\n\n"
+                + _("Configure your preferences")
+                + ": "
+                + settings.BASE_URL,
+            )
+            profile.received_count += 1
+            profile.updated_at = timezone.now()
+            profile.save()
             messages.success(request, _("Successfully updated your preferences."))
             response = redirect("rpna:setup")
             response.set_cookie(settings.LANGUAGE_COOKIE_NAME, profile.language)

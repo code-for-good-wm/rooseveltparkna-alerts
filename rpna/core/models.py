@@ -74,6 +74,12 @@ class Profile(models.Model):
     alerted_at = models.DateTimeField(
         default=timezone.now, help_text="Timestamp when user was last sent an alert."
     )
+    received_count = models.IntegerField(
+        default=0, help_text="Number of alerts sent to this user."
+    )
+    updated_at = models.DateTimeField(
+        default=timezone.now, help_text="Timestamp when user was last updated."
+    )
 
     def __str__(self):
         return self.number
@@ -101,6 +107,7 @@ class Profile(models.Model):
 
         if send_text_message(self.number, content):
             self.alerted_at = timezone.now()
+            self.received_count += 1
             self.save()
             event.sent_count += 1
             event.save()
