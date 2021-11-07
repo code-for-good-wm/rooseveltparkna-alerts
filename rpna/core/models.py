@@ -57,7 +57,7 @@ class Profile(models.Model):
 
     language = models.CharField(max_length=2, choices=Language.choices)
     neighborhood_updates = models.BooleanField(
-        default=False, verbose_name=_("Neighborhood Updates")
+        default=True, verbose_name=_("Neighborhood Updates")
     )
     volunteer_opportunities = models.BooleanField(
         default=False, verbose_name=_("Volunteer Opportunities")

@@ -164,6 +164,15 @@ run-production: .envrc install
 
 # DOCUMENTATION TARGETS #######################################################
 
+.PHONY: i18n-prepare
+i18n-prepare: install
+	poetry run django-admin makemessages --locale es
+
+.PHONY: i18n-compile
+i18n-complie: locale/es/LC_MESSAGES/django.mo
+locale/es/LC_MESSAGES/django.mo: locale/es/LC_MESSAGES/django.po
+	poetry run django-admin compilemessages
+
 .PHONY: uml
 uml: install
 	poetry install --extras uml
