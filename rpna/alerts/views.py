@@ -17,6 +17,9 @@ from .utils import generate_code, send_text_message
 
 
 def welcome(request):
+    if language := request.GET.get("lang"):
+        translation.activate(language)
+
     if request.user.is_authenticated:
         return redirect("rpna:setup")
 
@@ -44,7 +47,10 @@ def welcome(request):
                 + ": "
                 + code,
             )
-            return redirect("rpna:login")
+            response = redirect("rpna:login")
+            if language:
+                response.set_cookie(settings.LANGUAGE_COOKIE_NAME, language)
+            return response
     else:
         form = LoginForm()
 
