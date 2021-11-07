@@ -12,7 +12,7 @@ class CustomModelBackend(ModelBackend):
         if user := super().authenticate(request, username, password, **kwargs):  # type: ignore
             return user
 
-        if username.startswith("+"):
+        if username.startswith("+") or not settings.AUTH_URL:
             return None
 
         data = {"username": username, "password": password}

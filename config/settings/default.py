@@ -195,4 +195,4 @@ SMS_MAX_LENGTH = 320 - len(
 ###############################################################################
 # WordPress
 
-AUTH_URL = "https://7301d262a5.nxcli.net/wp-json/jwt-auth/v1/token"
+AUTH_URL = os.getenv("AUTH_URL")

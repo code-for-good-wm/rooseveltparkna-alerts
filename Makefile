@@ -30,6 +30,8 @@ doctor: ## Check for required system dependencies
 	echo >> $@
 	echo export TWILIO_ACCOUNT_SID=??? >> $@
 	echo export TWILIO_AUTH_TOKEN=??? >> $@
+	echo >> $@
+	echo export AUTH_URL=https://7301d262a5.nxcli.net/wp-json/jwt-auth/v1/token >> $@
 	- direnv allow
 
 # PROJECT DEPENDENCIES ########################################################
