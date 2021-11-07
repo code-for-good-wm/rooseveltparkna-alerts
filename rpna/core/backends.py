@@ -26,7 +26,10 @@ class CustomModelBackend(ModelBackend):
         username = data["user_nicename"]
         email = data["user_email"]
         display_name = data["user_display_name"]
-        first_name, last_name = display_name.rsplit(" ", 1)
+        if " " in display_name:
+            first_name, last_name = display_name.rsplit(" ", 1)
+        else:
+            first_name = display_name
 
         user, created = User.objects.update_or_create(
             username=username,
