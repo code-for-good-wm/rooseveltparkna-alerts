@@ -33,6 +33,7 @@ class EventAdmin(admin.ModelAdmin):
         "message_spanish",
         "_links",
         "sent",
+        "sent_count",
         "created_at",
     ]
 

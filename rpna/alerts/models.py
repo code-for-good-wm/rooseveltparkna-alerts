@@ -73,6 +73,7 @@ class Event(models.Model):
     sent_count = models.IntegerField(
         default=0,
         editable=False,
+        verbose_name="Recipients",
         help_text="Number of residents who have received this alert.",
     )
 
