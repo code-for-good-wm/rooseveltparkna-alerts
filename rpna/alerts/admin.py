@@ -12,8 +12,6 @@ def send_selected_events(modeladmin, request, queryset):
     count = 0
     event: Event
     for event in queryset:
-        if event.test_number:
-            send_text_message(event.test_number, event.content_english)
         if not event.sent:
             event.sent = True
             event.sent_at = timezone.now()
@@ -32,25 +30,21 @@ class EventAdmin(admin.ModelAdmin):
         "id",
         "category",
         "message_english",
-        "_link_english",
         "message_spanish",
-        "_link_spanish",
+        "_links",
         "sent",
         "created_at",
     ]
 
     @staticmethod
-    @admin.display(description="Link (English)")
-    def _link_english(instance):
-        if url := instance.link_english:
-            return format_html(f'<a href="{url}" target="_blank">{url}</a>')
-        return None
-
-    @staticmethod
-    @admin.display(description="Link (Spanish)")
-    def _link_spanish(instance):
-        if url := instance.link_spanish:
-            return format_html(f'<a href="{url}" target="_blank">{url}</a>')
+    @admin.display(description="Links")
+    def _links(instance):
+        if instance.link_english:
+            return format_html(
+                f'<a href="{instance.link_english}" target="_blank">English</a>'
+                " | "
+                f'<a href="{instance.link_spanish}" target="_blank">Spanish</a>'
+            )
         return None
 
     actions = [send_selected_events]
@@ -59,3 +53,5 @@ class EventAdmin(admin.ModelAdmin):
         obj.test_number = format_number(obj.test_number)[0]
         obj.created_by = request.user
         super().save_model(request, obj, form, change)
+        if obj.test_number:
+            send_text_message(obj.test_number, obj.content_english)

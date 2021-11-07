@@ -18,31 +18,31 @@ class Event(models.Model):
     message_english = models.CharField(
         max_length=settings.SMS_MAX_LENGTH,
         verbose_name="Message (English)",
-        help_text=f"The text message content, not including the URL. ({settings.SMS_MAX_LENGTH} characters)",
+        help_text=f"The text message content, not including the URL. [{settings.SMS_MAX_LENGTH} characters]",
     )
     message_spanish = models.CharField(
         max_length=settings.SMS_MAX_LENGTH,
         verbose_name="Message (Spanish)",
-        help_text=f"The text message content, not including the URL. ({settings.SMS_MAX_LENGTH} characters)",
+        help_text=f"The text message content, not including the URL. [{settings.SMS_MAX_LENGTH} characters]",
     )
     link_english = models.URLField(
         verbose_name="Link (English)",
         null=True,
         blank=True,
-        help_text="Destination URL back to the main website.",
+        help_text="Optional URL to get additional information about this alert.",
     )
     link_spanish = models.URLField(
         verbose_name="Link (Spanish)",
         null=True,
         blank=True,
-        help_text="Destination URL back to the main website.",
+        help_text="Optional URL to get additional information about this alert.",
     )
 
     test_number = models.CharField(
         max_length=20,
         null=True,
         blank=True,
-        help_text="Mobile number to send a test message.",
+        help_text="Optional mobile number to send a test message.",
     )
 
     created_at = models.DateTimeField(
@@ -80,7 +80,7 @@ class Event(models.Model):
         ordering = ["-created_at"]
 
     def __str__(self):
-        return f"Alert {self.pk}"
+        return f"{self.pk}"
 
     @property
     def url_english(self) -> str:
