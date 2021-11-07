@@ -26,8 +26,10 @@
     "createdb",
     "Detalles",
     "direnv",
+    "gettext",
     "grappelli",
     "HTMX",
+    "msgstr",
     "rpna",
     "TWILIO",
     "yasg"

@@ -62,6 +62,23 @@ Run linters and static analyzers:
 $ make check
 ```
 
+### Translations
+
+Update the `gettext` input files:
+
+```
+$ make i18n-generate
+```
+
+Update `msgstr` for each language:
+- https://github.com/code-for-good-wm/rooseveltparkna-alerts/blob/main/locale/es/LC_MESSAGES/django.po
+
+Compile the translations:
+
+```
+$ make i18n-compile
+```
+
 ## Continuous Integration
 
 The CI server will report overall build status:
