@@ -9,8 +9,9 @@ import requests
 
 class CustomModelBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
-        if user := super().authenticate(request, username, password, **kwargs):  # type: ignore
-            return user
+        if username.startswith("+") or username == "admin":
+            if user := super().authenticate(request, username, password, **kwargs):  # type: ignore
+                return user
 
         if username.startswith("+") or not settings.AUTH_URL:
             return None
@@ -19,7 +20,9 @@ class CustomModelBackend(ModelBackend):
         response = requests.post(settings.AUTH_URL, data)
         data = response.json()
 
-        if response.status_code != 200:
+        if response.status_code == 200:
+            messages.success(request, "Successfully authenticated with WordPress.")
+        else:
             messages.error(request, data["message"])
             return None
 
