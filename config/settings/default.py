@@ -106,6 +106,8 @@ LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/setup"
 LOGOUT_REDIRECT_URL = "/"
 
+AUTHENTICATION_BACKENDS = ["rpna.core.backends.CustomModelBackend"]
+
 ###############################################################################
 # Sessions
 
@@ -171,17 +173,6 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 ###############################################################################
-# Django Sesame
-
-SESAME_TOKEN_NAME = "token"
-SESAME_MAX_AGE = timedelta(days=30)
-
-AUTHENTICATION_BACKENDS = [
-    "django.contrib.auth.backends.ModelBackend",
-    "sesame.backends.ModelBackend",
-]
-
-###############################################################################
 # Twilio
 
 TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
@@ -200,3 +191,8 @@ SMS_MAX_LENGTH = 320 - len(
         message="", details="Detalles", url="https://alerts.rooseveltparkna.org/$$/####"
     )
 )
+
+###############################################################################
+# WordPress
+
+AUTH_URL = "https://7301d262a5.nxcli.net/wp-json/jwt-auth/v1/token"

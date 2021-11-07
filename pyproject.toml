@@ -18,7 +18,6 @@ django-cors-headers = "*"
 django-debug-toolbar = "^3.2.2"
 django-extensions = "*"
 django-grappelli = "*"
-django-sesame = "^2.4"
 crispy-bootstrap5 = "*"
 
 # API
