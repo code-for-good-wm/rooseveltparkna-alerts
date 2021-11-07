@@ -19,6 +19,10 @@ body {
 
 /* Crispy overrides */
 
+.asteriskField {
+  display: none;
+}
+
 ul.m-0 {
   padding-left: 0;
   list-style: none;

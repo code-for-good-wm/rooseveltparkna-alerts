@@ -7,7 +7,7 @@
 
 <h1>{% translate "Your Preferences" %}</h1>
 
-<p>{% translate "Configure which type of alerts we'll sent to" %} <code>{{ request.user.profile.display_number }}</code>.</p>
+<p class="text-secondary">{% translate "Configure which type of alerts we'll sent to" %} <code>{{ request.user.profile.display_number }}</code>.</p>
 
 <form method="post" novalidate>
   {% csrf_token %}

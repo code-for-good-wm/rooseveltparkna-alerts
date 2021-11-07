@@ -78,7 +78,6 @@ def login(request):
                 force_login(request, user)
                 return redirect("rpna:setup")
 
-            # TODO: Move this to form validation
             messages.error(request, _("Invalid confirmaiton code. Please try again."))
             return redirect("rpna:login")
     else:
