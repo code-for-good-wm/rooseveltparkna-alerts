@@ -55,8 +55,6 @@ class EventAdmin(admin.ModelAdmin):
 
     actions = [send_selected_events]
 
-    readonly_fields = ["created_by", "created_at"]
-
     def save_model(self, request, obj, form, change):
         obj.test_number = format_number(obj.test_number)[0]
         obj.created_by = request.user
