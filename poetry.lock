@@ -354,20 +354,6 @@ Django = ">=2.2"
 redis = ">=3.0.0"
 
 [[package]]
-name = "django-sesame"
-version = "2.4"
-description = "Frictionless authentication with \"Magic Links\" for your Django project."
-category = "main"
-optional = false
-python-versions = ">=3.6,<4.0"
-
-[package.dependencies]
-django = ">=2.2"
-
-[package.extras]
-ua = ["ua-parser (>=0.10)"]
-
-[[package]]
 name = "django-stubs"
 version = "1.9.0"
 description = "Mypy stubs for Django"
@@ -1359,7 +1345,7 @@ uml = ["pygraphviz"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "6a304aaa946cd52bfa97ca37ba5078910d84a2b63736bb0c985c5b4d0249c83e"
+content-hash = "aab8a224cf661bb27f4598f9548e9d085acf8677dfe97f19dcf4e37c07fa5f3b"
 
 [metadata.files]
 appnope = [
@@ -1595,10 +1581,6 @@ django-livereload-server = [
 django-redis = [
     {file = "django-redis-4.12.1.tar.gz", hash = "sha256:306589c7021e6468b2656edc89f62b8ba67e8d5a1c8877e2688042263daa7a63"},
     {file = "django_redis-4.12.1-py3-none-any.whl", hash = "sha256:1133b26b75baa3664164c3f44b9d5d133d1b8de45d94d79f38d1adc5b1d502e5"},
-]
-django-sesame = [
-    {file = "django-sesame-2.4.tar.gz", hash = "sha256:4f232ba1c3642b4eef23257af9a2feac36970457d2940f4083c48c6a3d9cb0a3"},
-    {file = "django_sesame-2.4-py3-none-any.whl", hash = "sha256:b0570b610ec2f3602ff12d43b5bca41c4a37a3079e6a0170ceccc69689446b87"},
 ]
 django-stubs = [
     {file = "django-stubs-1.9.0.tar.gz", hash = "sha256:664843091636a917faf5256d028476559dc360fdef9050b6df87ab61b21607bf"},

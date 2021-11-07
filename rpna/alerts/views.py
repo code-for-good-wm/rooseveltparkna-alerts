@@ -33,7 +33,7 @@ def welcome(request):
             code = generate_code(user)
 
             if "debug" in request.POST and allow_debug(request):
-                force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
+                force_login(request, user)
                 return redirect("rpna:setup")
 
             send_text_message(
@@ -65,7 +65,7 @@ def login(request):
                 profile: Profile = user.profile  # type: ignore
                 profile.valid = True
                 profile.save()
-                force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
+                force_login(request, user)
                 messages.success(request, "Successfully logged in.")
                 return redirect("rpna:setup")
 
