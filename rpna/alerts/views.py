@@ -81,7 +81,9 @@ def login(request):
 
 def logout(request):
     force_logout(request)
-    return redirect("rpna:welcome")
+    response = redirect("rpna:welcome")
+    response.delete_cookie(settings.LANGUAGE_COOKIE_NAME)
+    return response
 
 
 @login_required
