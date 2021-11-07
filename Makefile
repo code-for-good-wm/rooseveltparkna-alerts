@@ -164,6 +164,10 @@ run-production: .envrc install
 
 # DOCUMENTATION TARGETS #######################################################
 
+.PHONY: translations
+translations: install
+	poetry run django-admin makemessages --locale es
+
 .PHONY: uml
 uml: install
 	poetry install --extras uml
