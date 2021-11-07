@@ -1,3 +1,25 @@
+/* Footer placement */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 160px; /* Set the fixed height of the footer here */
+  background-color: #243133;
+}
+
 /* Crispy overrides */
 
-ul.m-0 { padding-left: 0; list-style: none; }
+ul.m-0 {
+  padding-left: 0;
+  list-style: none;
+}
