@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block main %}
@@ -13,7 +14,8 @@
 
   {{ form|crispy }}
 
-  <button class="btn btn-primary" type="submit">Save</button>
+  <button class="btn btn-primary" type="submit">{% translate "Save" %}</button>
+  <button class="btn btn-outline-danger" name="delete">{% translate "Disable all alerts" %}</button>
 </form>
 
 {% endblock main %}

@@ -1,29 +1,10 @@
-import random
-import string
 from datetime import timedelta
 
 from django.utils import timezone
 
-import phonenumbers
-
 from rpna.core.models import Profile
 
-from .models import Event
-
-
-def format_number(value: str) -> tuple[str, str]:
-    try:
-        parsed = phonenumbers.parse(value, "US")
-    except phonenumbers.NumberParseException as e:
-        return value, e.args[0]
-    return phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.E164), ""
-
-
-def generate_code(user):
-    code = "".join(random.choice(string.digits) for _ in range(6))
-    user.set_password(code)
-    user.save()
-    return code
+from .models import Category, Event
 
 
 def send_alerts() -> int:
@@ -31,9 +12,14 @@ def send_alerts() -> int:
 
     age = timezone.now() - timedelta(hours=1)
     for event in Event.objects.filter(sent_at__gte=age):
-        for profile in Profile.objects.filter(
-            valid=True, alerted_at__lte=event.sent_at
-        ):
+
+        options = {"valid": True, "alerted_at__lte": event.sent_at}
+        if event.category == Category.NEIGHBORHOOD_UPDATE:
+            options["neighborhood_updates"] = True
+        elif event.category == Category.VOLUNTEER_OPPORTUNITY:
+            options["volunteer_opportunities"] = True
+
+        for profile in Profile.objects.filter(**options):
             if profile.alert(event):
                 count += 1
 

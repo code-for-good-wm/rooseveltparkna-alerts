@@ -4,10 +4,8 @@ from django.contrib import admin, messages
 from django.utils import timezone
 from django.utils.html import format_html
 
-from rpna.core.helpers import send_text_message
-
-from .helpers import format_number
 from .models import Event
+from .utils import format_number, send_text_message
 
 
 def send_selected_events(modeladmin, request, queryset):

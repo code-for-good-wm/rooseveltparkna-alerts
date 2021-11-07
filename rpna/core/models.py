@@ -8,8 +8,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from rpna.alerts.models import Event
-
-from .helpers import send_text_message
+from rpna.alerts.utils import send_text_message
 
 
 def normalize(name: str) -> str:

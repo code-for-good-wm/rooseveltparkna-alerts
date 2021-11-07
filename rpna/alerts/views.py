@@ -8,12 +8,12 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
-from rpna.core.helpers import allow_debug, send_text_message
 from rpna.core.models import Profile
+from rpna.core.utils import allow_debug
 
 from .forms import LoginCodeForm, LoginForm, SetupForm
-from .helpers import generate_code
 from .models import Event, User
+from .utils import generate_code, send_text_message
 
 
 def welcome(request):
@@ -89,6 +89,13 @@ def setup(request):
     if request.user.is_staff:
         messages.info(request, "Staff user is now logged out.")
         return redirect("rpna:logout")
+
+    if "delete" in request.POST:
+        request.user.delete()
+        messages.info(
+            request, _("Good bye! You will no longer receveice text messages from us.")
+        )
+        return redirect("rpna:welcome")
 
     if request.method == "POST":
         form = SetupForm(request.POST, instance=request.user.profile)
