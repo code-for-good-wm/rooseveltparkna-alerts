@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,44 +10,53 @@
     <title>{% block title %}Roosevelt Park Neighborhood Association{% endblock title %}</title>
 
     <!-- Favicons -->
-    {% comment %} <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icons/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
-    <link rel="mask-icon" href="{% static 'icons/safari-pinned-tab.svg' %}" color="#f55221">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'safari-pinned-tab.svg' %}" color="#f55221">
     <meta name="msapplication-TileColor" content="#f55221">
-    <meta name="theme-color" content="#ffffff"> {% endcomment %}
+    <meta name="theme-color" content="#ffffff">
 
     {% block meta %}
     <!-- Primary Meta Tags -->
     <meta name="title" content="Roosevelt Park Neighborhood Association">
-    <meta name="description" content="TODO">
+    <meta name="description" content="{% translate " Meta_Description" %}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alerts.rooseveltparkna.org/">
     <meta property="og:title" content="Roosevelt Park Neighborhood Association">
-    <meta property="og:description" content="TODO">
-    {% comment %} <meta property="og:image" content="https://alerts.rooseveltparkna.org{% static 'logo.png' %}"> {% endcomment %}
+    <meta property="og:description" content="{% translate " Meta_Description" %}">
+    <meta property="og:image" content="https://alerts.rooseveltparkna.org{% static 'logo.png' %}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary">
     <meta property="twitter:url" content="https://alerts.rooseveltparkna.org/">
     <meta property="twitter:title" content="Roosevelt Park Neighborhood Association">
-    <meta property="twitter:description" content="TODO">
-    {% comment %} <meta property="twitter:image" content="https://alerts.rooseveltparkna.org{% static 'logo.png' %}"> {% endcomment %}
+    <meta property="twitter:description" content="{% translate " Meta_Description" %}">
+    <meta property="twitter:image" content="https://alerts.rooseveltparkna.org{% static 'logo.png' %}">
     {% endblock meta %}
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Custom Styles -->
-    {% comment %} <link href="{% static 'styles/footer.css' %}" rel="stylesheet"> {% endcomment %}
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
 
 </head>
 <body>
+    <nav class="navbar navbar-light bg-light">
+        <section class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'logo.png' %}" alt="Roosevelt Park Neighborhood Association"
+                    class="d-inline-block align-top" />
+            </a>
+        </section>
+    </nav>
+
     {% block content %}
-    <div class="container my-3">
+    <div class="container my-4">
 
         {% include "_messages.html" %}
 
@@ -60,7 +69,7 @@
     </div>
     {% endblock content %}
 
-    {% comment %} {% include "_footer.html" %} {% endcomment %}
+    {% include "_footer.html" %}
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
