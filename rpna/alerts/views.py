@@ -5,7 +5,7 @@ from django.contrib.auth import login as force_login
 from django.contrib.auth import logout as force_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils import timezone
+from django.utils import timezone, translation
 from django.utils.translation import gettext_lazy as _
 
 from rpna.core.models import Profile
@@ -41,7 +41,7 @@ def welcome(request):
                 "Welcome to Roosevelt Park's messaging system!\n\n"
                 f"Your confirmation code is: {code}",
             )
-            messages.success(request, f"Message sucesfully sent to {number}.")
+            messages.success(request, f"Message successfully sent to {number}.")
             return redirect("rpna:login")
     else:
         form = LoginForm()
@@ -66,7 +66,7 @@ def login(request):
                 profile.valid = True
                 profile.save()
                 force_login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
-                messages.success(request, "Sucessfully logged in.")
+                messages.success(request, "Successfully logged in.")
                 return redirect("rpna:setup")
 
             # TODO: Move this to form validation
@@ -100,9 +100,12 @@ def setup(request):
     if request.method == "POST":
         form = SetupForm(request.POST, instance=request.user.profile)
         if form.is_valid():
-            form.save()
-            messages.success(request, _("Succesfully updated your preferences."))
-            return redirect("rpna:setup")
+            profile = form.save()
+            translation.activate(profile.language)
+            messages.success(request, _("Successfully updated your preferences."))
+            response = redirect("rpna:setup")
+            response.set_cookie(settings.LANGUAGE_COOKIE_NAME, profile.language)
+            return response
     else:
         form = SetupForm(instance=request.user.profile)
 

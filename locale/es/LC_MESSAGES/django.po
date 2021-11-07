@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-06 20:53-0400\n"
+"POT-Creation-Date: 2021-11-06 21:12-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,52 +20,56 @@ msgstr ""
 
 #: rpna/alerts/models.py:12
 msgid "Neighborhood Update"
-msgstr ""
+msgstr "Actualización del vecindario"
 
 #: rpna/alerts/models.py:13
 msgid "Volunteer Opportunity"
-msgstr ""
+msgstr "Volunteer Opportunity"
 
-#: rpna/alerts/views.py:96
+#: rpna/alerts/views.py:100
 msgid "Good bye! You will no longer receveice text messages from us."
-msgstr ""
+msgstr "¡Adiós! Ya no recibirás mensajes de texto nuestros."
 
-#: rpna/alerts/views.py:104
+#: rpna/alerts/views.py:108
 msgid "Succesfully updated your preferences."
-msgstr ""
+msgstr "Actualizó con éxito sus preferencias."
 
 #: rpna/core/models.py:50
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: rpna/core/models.py:51
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: rpna/core/models.py:60
 msgid "Neighborhood Updates"
-msgstr ""
+msgstr "Actualizaciones del vecindario"
 
 #: rpna/core/models.py:63
 msgid "Volunteer Opportunities"
-msgstr ""
+msgstr "Oportunidades para voluntarios"
 
 #: rpna/core/models.py:109
 msgid "Please select at least one type of alert."
-msgstr ""
+msgstr "Seleccione al menos un tipo de alerta."
 
 #: templates/setup.html:8
 msgid "Your Preferences"
-msgstr ""
+msgstr "Tus preferencias"
 
 #: templates/setup.html:10
 msgid "Choose the type of messages you'd like sent to"
-msgstr ""
+msgstr "Elige el tipo de mensajes al que te gustaría enviar"
 
 #: templates/setup.html:17
 msgid "Save"
-msgstr ""
+msgstr "Ahorrar"
 
 #: templates/setup.html:18
 msgid "Disable all alerts"
-msgstr ""
+msgstr "Deshabilitar todas las alertas"
+
+#: templates/welcome.html:8
+msgid "Welcome"
+msgstr "Bienvenida"

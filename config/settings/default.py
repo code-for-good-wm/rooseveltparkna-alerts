@@ -44,6 +44,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -120,6 +121,7 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "US/Michigan"
 
 USE_I18N = True
+LOCALE_PATHS = [os.path.join(PROJECT_ROOT, "locale")]
 
 USE_L10N = True
 
