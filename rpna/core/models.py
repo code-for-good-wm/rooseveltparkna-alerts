@@ -47,8 +47,8 @@ for _name in dir(CustomUser):
 
 
 class Language(models.TextChoices):
-    ENGLISH = "en", _("English")
-    SPANISH = "es", _("Spanish")
+    ENGLISH = "en", "English"
+    SPANISH = "es", "Español"
 
 
 class Profile(models.Model):

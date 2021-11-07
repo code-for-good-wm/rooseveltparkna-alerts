@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-07 00:43-0400\n"
+"POT-Creation-Date: 2021-11-07 00:46-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,14 +53,6 @@ msgstr "¡Adiós! Ya no recibirás mensajes de texto nuestros."
 #: rpna/alerts/views.py:108
 msgid "Successfully updated your preferences."
 msgstr "Actualizó con éxito sus preferencias."
-
-#: rpna/core/models.py:50
-msgid "English"
-msgstr "Inglés"
-
-#: rpna/core/models.py:51
-msgid "Spanish"
-msgstr "Español"
 
 #: rpna/core/models.py:60
 msgid "Neighborhood Updates"
